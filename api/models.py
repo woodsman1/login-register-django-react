@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-from django.contrib.auth.models import (BaseUserManager, AbstractBaseUser)
+from django.contrib.auth.models import (BaseUserManager, AbstractBaseUser, PermissionsMixin)
 
 class UserManager(BaseUserManager):
 
@@ -42,20 +42,20 @@ class UserManager(BaseUserManager):
         return user
 
 
-class User(AbstractBaseUser):
+class User(AbstractBaseUser, PermissionsMixin):
 
     email = models.EmailField(max_length=250, unique=True)
     
     first_name = models.CharField(max_length=250) 
     last_name = models.CharField(max_length=250) 
-    phone_number = models.IntegerField(max_length=12)
+    phone_number = models.IntegerField()
 
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = ['first_name', "last_name", "phone_number"]
 
     object = UserManager()
 
