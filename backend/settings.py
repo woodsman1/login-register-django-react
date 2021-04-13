@@ -99,6 +99,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+SESSION_COOKIE_AGE = 300 # 5 min in seconds
 
 CORS_ORIGIN_WHITELIST = [
     "http://127.0.0.1:3000",

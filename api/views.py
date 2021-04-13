@@ -23,6 +23,7 @@ class Register(APIView):
 
         refresh = RefreshToken.for_user(user)
 
+
         res = {
             "email": user.email,
             "refresh":str(refresh),
@@ -40,6 +41,7 @@ class Login(APIView):
         user =  serializer.save()
 
         refresh = RefreshToken.for_user(user)
+
 
         res = {
             "email": user.email,
